@@ -4,7 +4,7 @@ import pynotify
 import random
 from time import sleep
 
-fw = open('.vocab.txt','r')
+fw = open('cet_6_vocab.txt','r')
 vocab = fw.read()
 vocab = vocab.split('\n')
 
@@ -13,11 +13,9 @@ def sendmessage(title, message):
     notice = pynotify.Notification(title, message)
     notice.show()
     return
-    
-while True:
-    i = random.randint(0,len(vocab)-1)
-    if i % 2 == 0:
-        sendmessage(vocab[i],vocab[i+1])
-        sleep(300)
-    else:
-        continue
+
+i = random.randint(0,len(vocab)-1)
+word_array = vocab[i].split(' ')
+word = word_array.pop(0)
+translate = '\n'.join(word_array)
+sendmessage(word,translate)
